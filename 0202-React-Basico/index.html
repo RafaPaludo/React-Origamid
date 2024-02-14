@@ -1,0 +1,82 @@
+<!--
+	Note: See https://react.dev/learn/installation#try-react-locally
+
+	It is just a way to run React locally, not indicate to production. Only shows what is the minimum necessary to run React.
+-->
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Class 0202</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+      // All React element is build using createElement function. Babel is the one who creates it, so we can create a function that returns HTML.
+      const Button = () => {
+        return <button>Buy</button>;
+      }
+
+      const MainNav = () => {
+        return <nav>
+            <ul>
+                <li>
+                  <a href="#">Link 1</a>
+                </li>
+                <li>
+                  <a href="#">Link 2</a>
+                </li>
+            </ul>
+          </nav>;
+      }
+
+      // Events
+      const Products = () => {
+        const product1 = 'T-shirt';
+        const product2 = 'Hat';
+
+        function handleClick ({target}) {
+          window.alert(`Users bought a ${target.innerText}`);
+        }
+
+        return <div>
+          <button onClick={handleClick}>{product1}</button>  
+          <button onClick={handleClick}>{product2}</button>   
+        </div>;
+      }
+
+      // Hooks
+      const Buys = () => {
+        const [count, setCount] = React.useState(1);
+
+        function handleClick () {
+          setCount(count + 1);
+        }
+
+        return <div>
+          <button onClick={handleClick}>Buy: {count}</button>
+          <p>Total: {count}</p>
+          <p>Price: R$ {count * 50}</p>
+        </div>
+      }
+
+      const MyApp = () => {
+        return <div>
+                <h1>Hello, world!</h1>
+                <MainNav />
+                <Products />
+                <Button />
+                <Buys />
+            </div>;
+      }
+
+      const container = document.getElementById('root');
+      const root = ReactDOM.createRoot(container);
+      root.render(<MyApp />);
+
+    </script>
+  </body>
+</html>
