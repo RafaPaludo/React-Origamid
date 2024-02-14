@@ -1,0 +1,42 @@
+<!--
+	Note: See https://react.dev/learn/installation#try-react-locally
+
+	It is just a way to run React locally, not indicate to production. Only shows what is the minimum necessary to run React.
+-->
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Hello World</title>
+		<!-- Load React itself -->
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+		<!-- Load React DOM, needed for the web DOM browsers -->
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+
+    <!-- Load Babel to translate JSX -> JS -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+      function Button () {
+				const [total, setTotal] = React.useState(0);
+
+				return <button onClick={() => setTotal(total + 1)}>Add {total}</button>
+			}
+    
+      function MyApp() {
+        return <div>
+								<h1>Hello, world!</h1>
+								<Button />
+								<Button />
+							</div>;
+      }
+
+      const container = document.getElementById('root');
+      const root = ReactDOM.createRoot(container);
+      root.render(<MyApp />);
+
+    </script>
+  </body>
+</html>
